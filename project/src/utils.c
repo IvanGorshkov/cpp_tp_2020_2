@@ -19,7 +19,7 @@ int convert_str_to_arr(const char* str, const unsigned long size, double **linem
     int num_array = 0;
     for (int num_letter = 0; str[num_letter] != '\0'; ++num_letter) {
         if (str[num_letter] != ' ') {
-            if (str[num_letter] < '0' || str[num_letter] > '9' ) {
+            if (str[num_letter] < '0' || str[num_letter] > '9') {
                 free(arr);
                 arr = NULL;
                 return EXIT_FAILURE;
