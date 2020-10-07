@@ -9,7 +9,7 @@
 #include <string.h>
 #include "utils.h"
 
-int convert_str_to_arr(const char* str, const int size, double **linematrix) {
+int convert_str_to_arr(const char* str, const size_t size, double **linematrix) {
     double* arr = calloc(size, sizeof(double));
     if (arr == NULL) {
         return EXIT_FAILURE;

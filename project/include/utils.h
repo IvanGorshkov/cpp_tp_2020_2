@@ -10,6 +10,6 @@
 
 #include <stdio.h>
 
-int convert_str_to_arr(const char* str, const int size, double **array);
+int convert_str_to_arr(const char* str, const size_t size, double **array);
 
 #endif  // PROJECT_INCLUDE_UTILS_H_

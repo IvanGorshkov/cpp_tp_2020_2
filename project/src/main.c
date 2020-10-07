@@ -12,7 +12,7 @@
 #include "matrix.h"
 
 
-int main(int argc, const char * argv[]) {
+int main() {
     size_t rows = 0;
     size_t cols = 0;
     char str[1024] = {0};
