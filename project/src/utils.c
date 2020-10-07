@@ -15,7 +15,7 @@ int convert_str_to_arr(const char* str, const size_t size, double **linematrix) 
         return EXIT_FAILURE;
     }
 
-    int num_array = 0;
+    size_t num_array = 0;
     for (int num_letter = 0; str[num_letter] != '\0'; ++num_letter) {
         if (str[num_letter] != ' ') {
             if (str[num_letter] < '0' || str[num_letter] > '9') {
