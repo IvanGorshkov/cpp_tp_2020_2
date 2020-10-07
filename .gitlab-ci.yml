@@ -4,7 +4,7 @@ before_script:
   - apt-get install --yes cmake
 
 variables:
-  BIN_NAME: dz1
+  BIN_NAME: iz1
 
   VALGRIND_LOG: "valgrind.log"
   NO_LOST_PATTERN: "All heap blocks were freed -- no leaks are possible"
@@ -37,7 +37,7 @@ test_mem:
   script:
     - apt-get update && apt-get install -y valgrind
     - cd build
-    - valgrind --tool=memcheck --leak-check=summary --log-file=${VALGRIND_LOG} ./${BIN_NAME} ../test.txt
+    - valgrind --tool=memcheck --leak-check=summary --log-file=${VALGRIND_LOG} ./${BIN_NAME} << "3 3 1 2 3 4 5 6 7 8 9"
     - export NO_LOST=$(grep "${NO_LOST_PATTERN}" ${VALGRIND_LOG})
     - export NO_ERROR=$(grep "${NO_ERROR_PATTERN}" ${VALGRIND_LOG})
     - if [ -z "${NO_LOST}" ] || [ -z "${NO_ERROR}" ]; then cat ${VALGRIND_LOG}; exit 1; fi
