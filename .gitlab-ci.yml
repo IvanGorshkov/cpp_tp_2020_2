@@ -21,10 +21,13 @@ test_style:
 build:
   stage: build
   script:
-    - make
+    - mkdir build
+    - cd build
+    - cmake ..
+    - cmake --build .
   artifacts:
     paths:
-      - ${BIN_NAME}
+      - "build"
 
 test_mem:
   stage: test_mem
