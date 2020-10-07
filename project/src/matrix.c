@@ -5,10 +5,9 @@
 //  Created by Ivan Gorshkov on 02.10.2020.
 //
 
-#include <malloc/_malloc.h>
 #include <stdio.h>
-#include "matrix.h"
 #include <stdlib.h>
+#include "matrix.h"
 
 Matrix* create_empty_matrix(size_t rows, size_t cols) {
     if (rows == 0 || cols == 0) {

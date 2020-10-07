@@ -5,8 +5,8 @@
 //  Created by Ivan Gorshkov on 01.10.2020.
 //
 
-#include <malloc/_malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "utils.h"
 #include "matrix.h"

@@ -5,7 +5,6 @@
 //  Created by Ivan Gorshkov on 02.10.2020.
 //
 
-#include <malloc/_malloc.h>
 #include <stdlib.h>
 #include <string.h>
 #include "utils.h"
