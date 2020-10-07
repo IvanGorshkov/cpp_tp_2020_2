@@ -47,7 +47,7 @@
 		709F96542526743C00D6F91D = {
 			isa = PBXGroup;
 			children = (
-				709F965F2526743C00D6F91D /* DZ1 */,
+				709F965F2526743C00D6F91D /* project */,
 				709F965E2526743C00D6F91D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,13 +60,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		709F965F2526743C00D6F91D /* DZ1 */ = {
+		709F965F2526743C00D6F91D /* project */ = {
 			isa = PBXGroup;
 			children = (
 				709F966D252691A800D6F91D /* src */,
 				709F966C2526919900D6F91D /* include */,
 			);
-			path = DZ1;
+			path = project;
 			sourceTree = "<group>";
 		};
 		709F966C2526919900D6F91D /* include */ = {

@@ -5,8 +5,8 @@
 //  Created by Ivan Gorshkov on 02.10.2020.
 //
 
-#ifndef matrix_h
-#define matrix_h
+#ifndef PROJECT_INCLUDE_MATRIX_H_
+#define PROJECT_INCLUDE_MATRIX_H_
 
 #include <stdio.h>
 
@@ -23,5 +23,4 @@ Matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_c
 int print_matrix(Matrix *matrix);
 int free_matrix(Matrix* matrix);
 
-#endif /* matrix_h */
-
+#endif  // PROJECT_INCLUDE_MATRIX_H_

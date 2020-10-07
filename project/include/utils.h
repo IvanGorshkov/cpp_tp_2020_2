@@ -5,11 +5,11 @@
 //  Created by Ivan Gorshkov on 02.10.2020.
 //
 
-#ifndef utils_h
-#define utils_h
+#ifndef PROJECT_INCLUDE_UTILS_H_
+#define PROJECT_INCLUDE_UTILS_H_
 
 #include <stdio.h>
 
 int convert_str_to_arr(const char* str, const unsigned long size, double **array);
 
-#endif /* utils_h */
+#endif  // PROJECT_INCLUDE_UTILS_H_

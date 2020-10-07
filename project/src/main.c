@@ -16,13 +16,13 @@ int main(int argc, const char * argv[]) {
     size_t rows = 0;
     size_t cols = 0;
     char str[1024] = {0};
-    scanf("%zd %zd %[^\t\n]s", &rows, &cols, str);
-    
+    scanf("%zu %zu %1023[^\t\n]s", &rows, &cols, str);
+
     if (rows == 0 || cols == 0 || !strcmp(str, "")) {
         printf("Oh... Error values\n");
         return 0;
     }
-    
+
     double* array = NULL;
     if (!convert_str_to_arr(str, rows * cols, &array)) {
         Matrix* new_matrix = generate_adjacency(array, rows, cols);
@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
             free(array);
             array = NULL;
         }
-        
+
         if (print_matrix(new_matrix)) {
             printf("Oh... Matrix is NULL\n");
             free(array);
@@ -39,15 +39,14 @@ int main(int argc, const char * argv[]) {
             free_matrix(new_matrix);
             new_matrix = NULL;
         }
-        
+
         free_matrix(new_matrix);
-        
     }
-    
+
     if (array == NULL) {
         printf("Oh... Error values\n");
     }
-    
+
     free(array);
     return 0;
 }
