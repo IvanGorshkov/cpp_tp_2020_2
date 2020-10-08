@@ -10,7 +10,6 @@
 		709F96612526743C00D6F91D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 709F96602526743C00D6F91D /* main.c */; };
 		709F966A2526918F00D6F91D /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 709F96692526918F00D6F91D /* utils.c */; };
 		709F96712526929A00D6F91D /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 709F96702526929A00D6F91D /* matrix.c */; };
-		70A55C4E252F11C700E970DB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 70A55C44252F11C700E970DB /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,10 +31,6 @@
 		709F96692526918F00D6F91D /* utils.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = utils.c; sourceTree = "<group>"; };
 		709F966F2526929A00D6F91D /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		709F96702526929A00D6F91D /* matrix.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
-		70A55C12252F11C700E970DB /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		70A55C41252F11C700E970DB /* in.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = in.txt; sourceTree = "<group>"; };
-		70A55C42252F11C700E970DB /* out.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = out.txt; sourceTree = "<group>"; };
-		70A55C44252F11C700E970DB /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +63,6 @@
 		709F965F2526743C00D6F91D /* project */ = {
 			isa = PBXGroup;
 			children = (
-				70A55C11252F11C700E970DB /* tests */,
 				709F966D252691A800D6F91D /* src */,
 				709F966C2526919900D6F91D /* include */,
 			);
@@ -90,33 +84,6 @@
 				709F96602526743C00D6F91D /* main.c */,
 				709F96692526918F00D6F91D /* utils.c */,
 				709F96702526929A00D6F91D /* matrix.c */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		70A55C11252F11C700E970DB /* tests */ = {
-			isa = PBXGroup;
-			children = (
-				70A55C12252F11C700E970DB /* CMakeLists.txt */,
-				70A55C40252F11C700E970DB /* data */,
-				70A55C43252F11C700E970DB /* src */,
-			);
-			path = tests;
-			sourceTree = "<group>";
-		};
-		70A55C40252F11C700E970DB /* data */ = {
-			isa = PBXGroup;
-			children = (
-				70A55C41252F11C700E970DB /* in.txt */,
-				70A55C42252F11C700E970DB /* out.txt */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		70A55C43252F11C700E970DB /* src */ = {
-			isa = PBXGroup;
-			children = (
-				70A55C44252F11C700E970DB /* main.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -179,7 +146,6 @@
 			files = (
 				709F96612526743C00D6F91D /* main.c in Sources */,
 				709F966A2526918F00D6F91D /* utils.c in Sources */,
-				70A55C4E252F11C700E970DB /* main.cpp in Sources */,
 				709F96712526929A00D6F91D /* matrix.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
