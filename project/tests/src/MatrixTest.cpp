@@ -48,4 +48,5 @@ TEST(MatrixTest, MatrixTwoValues) {
   for (int kI = 0; kI < 2; ++kI) {
     ASSERT_DOUBLE_EQ(expected[kI], matrix->matrix[kI]);
   }
+  free_matrix(matrix);
 }
