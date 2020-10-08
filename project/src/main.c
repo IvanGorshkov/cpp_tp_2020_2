@@ -17,10 +17,9 @@ int main() {
     size_t cols = 0;
     char str[1024] = {0};
     scanf("%zu %zu %1023[^\t\n]s", &rows, &cols, str);
-
-    if (rows == 0 || cols == 0 || !strcmp(str, "")) {
-        printf("Oh... Error values\n");
-        return 0;
+    if (check_empty_value(str, rows, cols)) {
+      printf("Oh... Error values\n");
+      return 0;
     }
 
     double* array = NULL;

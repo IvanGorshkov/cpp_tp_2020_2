@@ -9,6 +9,13 @@
 #include <string.h>
 #include "utils.h"
 
+int check_empty_value(const char* str, const size_t rows, const size_t cols) {
+  if (rows == 0 || cols == 0 || !strcmp(str, "")) {
+    return 1;
+  }
+  return 0;
+}
+
 int convert_str_to_arr(const char* str, const size_t size, double **linematrix) {
     double* arr = calloc(size, sizeof(double));
     if (arr == NULL) {
@@ -34,6 +41,11 @@ int convert_str_to_arr(const char* str, const size_t size, double **linematrix) 
             num_array++;
         }
     }
+
+    if (arr != NULL && (size > ++num_array)) {
+       free(arr);
+       arr = NULL;
+     }
 
     if (arr == NULL) {
         return EXIT_FAILURE;

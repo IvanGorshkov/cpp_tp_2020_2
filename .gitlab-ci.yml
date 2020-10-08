@@ -14,6 +14,7 @@ variables:
 stages:
   - test_style
   - build
+  - test
   - test_mem
 
 test_style:
@@ -31,6 +32,10 @@ build:
   artifacts:
     paths:
       - "build"
+test:
+  stage: test
+  script:
+    - ./project/tests/tests
 
 test_mem:
   stage: test_mem

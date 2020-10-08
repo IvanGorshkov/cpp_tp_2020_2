@@ -1,16 +1,12 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.10.2)
-project(test)
-SET(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
-ENABLE_TESTING()
-
-FIND_PACKAGE(GTest REQUIRED)
-INCLUDE_DIRECTORIES("${GTEST_INCLUDE_DIRS}")
-
+find_package(GTest REQUIRED)
 FIND_PACKAGE(Threads REQUIRED)
+include_directories("${GTEST_INCLUDE_DIRS}")
 
-INCLUDE_DIRECTORIES(include/)
-ADD_EXECUTABLE( matrix_testing
-                src/main.cpp
-                src/matrix_utils_test.cpp
-        )
+project(tests)
+set(CMAKE_CXX_STANDARD 17)
+
+include_directories(include)
+
+add_executable(${PROJECT_NAME} src/main.cpp src/UtilsTest.cpp)
+
+target_link_libraries(${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} libiz1)
