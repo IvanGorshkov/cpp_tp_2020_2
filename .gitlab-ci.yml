@@ -37,7 +37,8 @@ build:
 test:
   stage: test
   script:
-    - ./project/tests/tests
+    - cd build
+    - ctest -V -R
 
 test_mem:
   stage: test_mem
