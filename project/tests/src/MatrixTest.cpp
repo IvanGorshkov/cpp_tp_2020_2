@@ -2,6 +2,7 @@
 // Created by Ivan Gorshkov on 08.10.2020.
 //
 
+#include <math.h>
 #include "gtest/gtest.h"
 
 extern "C" {
@@ -12,6 +13,7 @@ TEST(MatrixTest, IsPrint) {
   double listArray[9] = {1,2,3,4,5,6,7,8,9};
   Matrix *matrix = generate_adjacency(listArray, 3, 3);
   ASSERT_EQ(print_matrix(matrix), 0);
+  free_matrix(matrix);
 }
 
 TEST(MatrixTest, Free) {
