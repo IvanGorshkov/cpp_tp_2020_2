@@ -11,16 +11,16 @@
 #include <stdio.h>
 
 
-typedef struct Matrix {
+typedef struct matrix {
     size_t rows;
     size_t cols;
     double *matrix;
-} Matrix;
+} matrix;
 
 
-Matrix* create_empty_matrix(size_t rows, size_t cols);
-Matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_cols);
-int print_matrix(Matrix *matrix);
-int free_matrix(Matrix* matrix);
+matrix* create_empty_matrix(size_t rows, size_t cols);
+matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_cols);
+int print_matrix(matrix *matrix);
+int free_matrix(matrix* matrix);
 
 #endif  // PROJECT_INCLUDE_MATRIX_H_
