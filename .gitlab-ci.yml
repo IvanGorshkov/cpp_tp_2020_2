@@ -1,0 +1,53 @@
+image: gcc
+before_script:
+  - apt-get update --yes
+  - apt-get install --yes cmake
+  - apt-get install --yes libgtest-dev
+
+
+variables:
+  BIN_NAME: iz1
+
+  VALGRIND_LOG: "valgrind.log"
+  NO_LOST_PATTERN: "All heap blocks were freed -- no leaks are possible"
+  NO_ERROR_PATTERN: "ERROR SUMMARY: 0 errors"
+
+
+stages:
+  - test_style
+  - build
+  - test
+  - test_mem
+
+test_style:
+  stage: test_style
+  script:
+    - ./linters/run.sh
+
+build:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - cmake --build .
+  artifacts:
+    paths:
+      - "build"
+test:
+  stage: test
+  script:
+    - cd build/project/tests/
+    - ./tests
+
+test_mem:
+  stage: test_mem
+  script:
+    - apt-get update && apt-get install -y valgrind
+    - cd build/project/tests/
+    - valgrind --tool=memcheck --leak-check=summary --log-file=${VALGRIND_LOG} ./tests
+    - export NO_LOST=$(grep "${NO_LOST_PATTERN}" ${VALGRIND_LOG})
+    - export NO_ERROR=$(grep "${NO_ERROR_PATTERN}" ${VALGRIND_LOG})
+    - if [ -z "${NO_LOST}" ] || [ -z "${NO_ERROR}" ]; then cat ${VALGRIND_LOG}; exit 1; fi
+
+
