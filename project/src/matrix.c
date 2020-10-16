@@ -14,22 +14,22 @@ matrix* create_empty_matrix(size_t rows, size_t cols) {
         return NULL;
     }
 
-    matrix *matrix = calloc(1, sizeof(matrix));
+    matrix *new_matrix = calloc(1, sizeof(matrix));
 
-    if (matrix == NULL) {
+    if (new_matrix == NULL) {
         return NULL;
     }
 
-    matrix->rows = rows;
-    matrix->cols = cols;
-    matrix->matrix = calloc(rows * cols, sizeof(double));
+  new_matrix->rows = rows;
+  new_matrix->cols = cols;
+  new_matrix->matrix = calloc(rows * cols, sizeof(double));
 
-    if (matrix->matrix == NULL) {
-        free_matrix(matrix);
+    if (new_matrix->matrix == NULL) {
+        free_matrix(new_matrix);
         return NULL;
     }
 
-    return matrix;
+    return new_matrix;
 }
 
 matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_cols) {
@@ -47,15 +47,14 @@ matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_c
 
     for (size_t cols = 0; cols < array_cols; ++cols) {
       for (int dir_k = 0; dir_k < 8; ++dir_k) {
-        size_t y  = cols + dir[dir_k][0];
-        size_t x  = rows + dir[dir_k][1];
-        if (x < 0 || x > array_rows - 1 || y < 0 || y > array_cols - 1) {
+        int y  = cols + dir[dir_k][0];
+        int x  = rows + dir[dir_k][1];
+        int max_index_row = array_rows - 1;
+        int max_index_col = array_cols - 1;
+        if (x < 0 || x > max_index_row || y < 0 || y > max_index_col) {
           continue;
         }
-        int xas = old_matrix[new_matrix->rows * y + x];
-          if (xas != 0) {
 
-          }
         sum += old_matrix[new_matrix->rows * y + x];
         ++middle;
       }
