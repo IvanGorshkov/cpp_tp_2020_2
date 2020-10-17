@@ -49,7 +49,7 @@ matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_c
       for (int dir_k = 0; dir_k < 8; ++dir_k) {
         size_t y  = cols + dir[dir_k][0];
         size_t x  = rows + dir[dir_k][1];
-        if (x < 0 || x >= array_rows || y < 0 || y >= array_cols)
+        if ((int)x < 0 || x >= array_rows || (int)y < 0 || y >= array_cols)
           continue;
         sum += old_matrix[new_matrix->rows * y + x];
         ++middle;
