@@ -41,27 +41,20 @@ matrix* generate_adjacency(double *old_matrix, size_t array_rows, size_t array_c
       {1, 0},  {1, 1}, {0, 1}, {-1, 1},
       {-1, 0}, {-1, -1}, {0, -1}, {1, -1}
   };
+
   for (size_t rows = 0; rows < array_rows; ++rows) {
-    double sum = 0;
-    int middle = 0;
-
     for (size_t cols = 0; cols < array_cols; ++cols) {
+      double sum = 0;
+      int middle = 0;
       for (int dir_k = 0; dir_k < 8; ++dir_k) {
-        int y  = cols + dir[dir_k][0];
-        int x  = rows + dir[dir_k][1];
-        int max_index_row = array_rows - 1;
-        int max_index_col = array_cols - 1;
-        if (x < 0 || x > max_index_row || y < 0 || y > max_index_col) {
+        size_t y  = cols + dir[dir_k][0];
+        size_t x  = rows + dir[dir_k][1];
+        if (x < 0 || x >= array_rows || y < 0 || y >= array_cols)
           continue;
-        }
-
         sum += old_matrix[new_matrix->rows * y + x];
         ++middle;
       }
-
       new_matrix->matrix[new_matrix->rows * cols + rows] = sum / middle;
-      sum = 0;
-      middle = 0;
     }
   }
 
