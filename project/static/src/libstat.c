@@ -63,6 +63,7 @@ int sequential_get_size_of_lines(const char *path) {
     free(array);
     return -1;
   }
+  free(array);
 
   return result;
 }
