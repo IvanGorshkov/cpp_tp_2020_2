@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 
-static int calc_all_line_size(int32_t *array, size_t count) {
+static int calc_all_line_size(u_int32_t *array, size_t count) {
   int res = 0;
   for (size_t kI = 0; kI < count; ++kI) {
     u_int32_t x = array[kI];
@@ -23,12 +23,13 @@ static int calc_all_line_size(int32_t *array, size_t count) {
 }
 
 int sequential_get_size_of_lines(const char *path) {
-  FILE *file = fopen(path, "rb");
+  FILE *file = fopen(path, "r");
   if (!file) {
     fprintf(stderr, "Failed to open file for read\n");
     return -1;
   }
-  u_int32_t count_of_num = 0;
+
+  size_t count_of_num = 0;
   while (!feof(file)) {
     char char_file = fgetc(file);
     if (char_file == ' ') {
@@ -37,15 +38,31 @@ int sequential_get_size_of_lines(const char *path) {
   }
 
   ++count_of_num;
-  int32_t* array = calloc(count_of_num, sizeof(int32_t));
-  fseek(file, 0, SEEK_SET);
+  u_int32_t* array = calloc(count_of_num, sizeof(int32_t));
 
+  if (array == NULL) {
+    if (fclose(file)) {
+      fprintf(stderr, "Failed to close file\n");
+    }
+    return -1;
+  }
+
+  fseek(file, 0, SEEK_SET);
   for (size_t i = 0; i < count_of_num; i++) {
     fscanf(file, "%d", &array[i]);
   }
 
-  fclose(file);
+  if (fclose(file)) {
+    free(array);
+    fprintf(stderr, "Failed to close file\n");
+    return -1;
+  }
+
   int result = calc_all_line_size(array, count_of_num);
-  free(array);
+  if (result == -1) {
+    free(array);
+    return -1;
+  }
+
   return result;
 }

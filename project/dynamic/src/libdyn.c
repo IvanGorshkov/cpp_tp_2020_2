@@ -10,7 +10,6 @@
 
 typedef struct {
   int value;
-  pthread_mutex_t mutex;
 } data_t;
 
 typedef struct {
@@ -19,7 +18,7 @@ typedef struct {
   u_int32_t *array;
 } meta;
 
-data_t data = {0, PTHREAD_MUTEX_INITIALIZER};
+data_t data = {0};
 
 static int calculation(meta *info) {
   if (info == NULL) {
@@ -39,7 +38,7 @@ static int calculation(meta *info) {
 }
 
 static void *thread_run(void *arg) {
-  pthread_mutex_t *mutex = &data.mutex;
+  //pthread_mutex_t *mutex = &data.mutex;
 
   meta* info = (meta*)arg;
   if (info == NULL) {
@@ -48,14 +47,14 @@ static void *thread_run(void *arg) {
   int res = calculation(info);
 
   int err_flag = 0;
-  err_flag = pthread_mutex_lock(mutex);
+//  err_flag = pthread_mutex_lock(mutex);
   if (err_flag != 0) {
     fprintf(stderr, "Failed to lock mutex\n");
     return NULL;
   }
 
   data.value += res;
-  err_flag = pthread_mutex_unlock(mutex);
+ // err_flag = pthread_mutex_unlock(mutex);
   if (err_flag != 0) {
     fprintf(stderr, "Failed to unlock mutex\n");
     return NULL;
