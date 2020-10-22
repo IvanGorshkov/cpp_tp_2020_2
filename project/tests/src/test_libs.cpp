@@ -38,7 +38,7 @@ TEST(Libs, Time) {
     path = glob_test_dir;
     path += "/in_" + std::to_string(kI + 1) + ".txt";
     std::cout << path << std::endl;
-    parallel_get_size_of_lines(path.c_str();
+    parallel_get_size_of_lines(path.c_str());
   }
   double  parall = stopClock();
   std::cout << parall << std::endl;
@@ -55,7 +55,7 @@ TEST(Libs, Time) {
     path = glob_test_dir;
     path += "/in_" + std::to_string(kI + 1) + ".txt";
     std::cout << path << std::endl;
-    sequential_get_size_of_lines(path.c_str();
+    sequential_get_size_of_lines(path.c_str());
   }
   double  sequential = stopClock();
   std::cout << sequential << std::endl;
