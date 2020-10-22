@@ -50,6 +50,7 @@ static void *thread_run(void *arg) {
   int err_flag = 0;
   err_flag = pthread_mutex_lock(mutex);
   if (err_flag != 0) {
+    free(mutex);
     fprintf(stderr, "Failed to lock mutex\n");
     return NULL;
   }
@@ -57,10 +58,11 @@ static void *thread_run(void *arg) {
   data.value += res;
   err_flag = pthread_mutex_unlock(mutex);
   if (err_flag != 0) {
+    free(mutex);
     fprintf(stderr, "Failed to unlock mutex\n");
     return NULL;
   }
-
+  free(mutex);
   return NULL;
 }
 
