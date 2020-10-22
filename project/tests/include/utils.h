@@ -7,8 +7,10 @@
 #include <gtest/gtest.h>
 #include <filesystem>
 #include <fstream>
-
-namespace fs = std::filesystem;
+#include <ctime>
 
 extern std::string glob_test_dir;
 const int number_of_files = 2;
+void startClock();
+double stopClock();
+void resetClock();
