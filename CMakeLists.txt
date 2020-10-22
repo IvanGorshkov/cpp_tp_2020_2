@@ -8,6 +8,10 @@ include_directories(project/static/include
                     project/dynamic/include/)
 ENABLE_TESTING()
 
+add_executable(${PROJECT_NAME}
+        project/dynamic/src/libdyn.c
+        project/static/src/libstat.c)
+
 ADD_SUBDIRECTORY(project/tests/)
 
 ADD_LIBRARY(libstat STATIC
