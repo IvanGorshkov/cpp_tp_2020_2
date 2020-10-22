@@ -9,21 +9,17 @@ extern "C" {
 }
 
 TEST(ParallelLib, GetLineSizeFromFileDyn) {
-    int i = 1;
-    for (auto& entry : fs::directory_iterator(glob_test_dir / "data")) {
-      std::cout << entry.path().parent_path() << std::endl;
-      std::string path = entry.path().parent_path();
-      path += "/out_" + std::to_string(i) + ".txt";
-      std::ifstream is(path);
-      int expected = 0;
-      is >> expected;
-      is.close();
-      path = entry.path().parent_path();
-      path += "/in_" + std::to_string(i) + ".txt";
-      std::cout << path << std::endl;
-      ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
-      if (i == number_of_files)
-        break;
-      ++i;
-    }
+  for (int kI = 0; kI < number_of_files; ++kI) {
+    std::cout << glob_test_dir << std::endl;
+    std::string path = glob_test_dir;
+    path += "/out_" + std::to_string(kI + 1) + ".txt";
+    std::ifstream is(path);
+    int expected = 0;
+    is >> expected;
+    is.close();
+    path = glob_test_dir;
+    path += "/in_" + std::to_string(kI + 1) + ".txt";
+    std::cout << path << std::endl;
+    ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
+  }
 }

@@ -10,5 +10,5 @@
 
 namespace fs = std::filesystem;
 
-extern fs::path glob_test_dir;
+extern std::string glob_test_dir;
 const int number_of_files = 2;
