@@ -148,6 +148,7 @@ int parallel_get_size_of_lines(const char *path) {
     free(array);
     return -1;
   }
+  free(array);
   data.value = 0;
   return result;
 }
