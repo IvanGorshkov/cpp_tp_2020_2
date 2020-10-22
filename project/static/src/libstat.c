@@ -49,7 +49,7 @@ int sequential_get_size_of_lines(const char *path) {
 
   fseek(file, 0, SEEK_SET);
   for (size_t i = 0; i < count_of_num; i++) {
-    fscanf(file, "%d", &array[i]);
+    fscanf(file, "%lu", &array[i]);
   }
 
   if (fclose(file)) {
