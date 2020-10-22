@@ -4,9 +4,6 @@
 
 #include "utils.h"
 #include <string>
-extern "C" {
-  #include "libstat.h"
-}
 
 
 TEST(StaticLib, GetLineSizeFromFileStat) {

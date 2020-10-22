@@ -4,9 +4,6 @@
 
 #include "utils.h"
 #include <string>
-extern "C" {
-  #include "libdyn.h"
-}
 
 TEST(ParallelLib, GetLineSizeFromFileDyn) {
     int i = 1;
