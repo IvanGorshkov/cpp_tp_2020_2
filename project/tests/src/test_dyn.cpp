@@ -21,10 +21,9 @@ TEST(ParallelLib, GetLineSizeFromFileDyn) {
       path = entry.path().parent_path();
       path += "/in_" + std::to_string(i) + ".txt";
       std::cout << path << std::endl;
-
+      ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
       if (i == number_of_files)
         break;
       ++i;
     }
-  ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
 }
