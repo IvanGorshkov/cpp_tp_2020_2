@@ -8,7 +8,7 @@
 #include <filesystem>
 #include <fstream>
 
-namespace fs = std::filesystem;
+//namespace fs = std::filesystem;
 
-extern fs::path glob_test_dir;
-const int number_of_files = 2;
+//extern fs::path glob_test_dir;
+//const int number_of_files = 2;

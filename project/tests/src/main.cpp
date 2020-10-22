@@ -4,7 +4,7 @@
 
 #include "utils.h"
 
-fs::path glob_test_dir;
+//fs::path glob_test_dir;
 
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
