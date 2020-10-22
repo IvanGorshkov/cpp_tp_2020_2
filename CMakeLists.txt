@@ -16,4 +16,5 @@ ADD_LIBRARY(libstat STATIC
 ADD_LIBRARY(libdyn SHARED
         project/dynamic/src/libdyn.c)
 
-target_link_libraries(${PROJECT_NAME} m)
+target_link_libraries(libstat m)
+target_link_libraries(libdyn m)
