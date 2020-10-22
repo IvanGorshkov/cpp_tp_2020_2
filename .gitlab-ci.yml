@@ -12,9 +12,15 @@ variables:
   NO_ERROR_PATTERN: "ERROR SUMMARY: 0 errors"
 
 stages:
+  - test_style
   - build
+  - test
   - test_mem
 
+test_style:
+  stage: test_style
+  script:
+    - ./linters/run.sh
 
 build:
   stage: build
@@ -26,6 +32,12 @@ build:
   artifacts:
     paths:
       - "build"
+
+test:
+  stage: test
+  script:
+    - cd build
+    - ctest -V -R
 
 test_mem:
   stage: test_mem
