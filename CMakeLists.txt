@@ -9,6 +9,7 @@ include_directories(project/static/include
 ENABLE_TESTING()
 
 add_executable(${PROJECT_NAME}
+        project/main.c
         project/dynamic/src/libdyn.c
         project/static/src/libstat.c)
 
