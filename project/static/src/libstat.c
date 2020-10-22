@@ -38,7 +38,7 @@ int sequential_get_size_of_lines(const char *path) {
   }
 
   ++count_of_num;
-  u_int32_t* array = calloc(count_of_num, sizeof(int32_t));
+  u_int32_t* array = calloc(count_of_num, sizeof(u_int32_t));
 
   if (array == NULL) {
     if (fclose(file)) {
