@@ -4,6 +4,9 @@
 
 #include "utils.h"
 #include <string>
+extern "C" {
+  #include "libdyn.h"
+}
 
 TEST(ParallelLib, GetLineSizeFromFileDyn) {
     int i = 1;
@@ -18,8 +21,7 @@ TEST(ParallelLib, GetLineSizeFromFileDyn) {
       path = entry.path().parent_path();
       path += "/in_" + std::to_string(i) + ".txt";
       std::cout << path << std::endl;
-      int in = 21;
-      ASSERT_EQ(in, 21);
+      ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
       if (i == number_of_files)
         break;
       ++i;

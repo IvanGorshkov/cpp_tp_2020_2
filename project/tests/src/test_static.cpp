@@ -4,6 +4,9 @@
 
 #include "utils.h"
 #include <string>
+extern "C" {
+  #include "libstat.h"
+}
 
 
 TEST(StaticLib, GetLineSizeFromFileStat) {
@@ -18,8 +21,7 @@ TEST(StaticLib, GetLineSizeFromFileStat) {
     is.close();
     path = entry.path().parent_path();
     path += "/in_" + std::to_string(i) + ".txt";
-    int in = 21;
-    ASSERT_EQ(in, 21);
+    ASSERT_EQ(expected, sequential_get_size_of_lines(path.c_str()));
     if (i == number_of_files) break;
     ++i;
   }
