@@ -3,6 +3,7 @@
 //
 
 #include <fstream>
+#include <random>
 #include "utils.h"
 static double start_time = 0;
 
@@ -21,6 +22,14 @@ void resetClock() {
 void generateFile() {
   std::ofstream myfile;
   myfile.open (glob_test_dir + "stress_test.txt");
-  myfile << "34 45 56 67 78 89 80 456 345 345 567 345 567 678 456 345 456 567\n";
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  for (int i = 0; i < 5000; ++i) {
+    if (i != 5000) {
+      std::cout << gen() << " ";
+    } else {
+      std::cout << gen();
+    }
+  }
   myfile.close();
 }
