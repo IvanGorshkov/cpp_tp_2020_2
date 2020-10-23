@@ -61,3 +61,12 @@ TEST(Libs, Time) {
   std::cout << sequential << std::endl;
   ASSERT_LE(parall, sequential);
 }
+
+TEST(Libs, StressTest) {
+  generateFile();
+  std::cout << glob_test_dir << std::endl;
+  std::string path = glob_test_dir;
+  path += "/stress_test.txt";
+  std::cout << path << std::endl;
+  ASSERT_EQ(sequential_get_size_of_lines(path.c_str()), parallel_get_size_of_lines(path.c_str()));
+}

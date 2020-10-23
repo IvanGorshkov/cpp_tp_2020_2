@@ -14,3 +14,5 @@ const int number_of_files = 2;
 void startClock();
 double stopClock();
 void resetClock();
+void generateFile();
+void resetClock();
