@@ -1,4 +1,4 @@
 *.out
 build/
 cmake-build-debug/
-.idea/
+Testing/
