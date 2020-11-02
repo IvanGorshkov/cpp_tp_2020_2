@@ -1,8 +1,15 @@
-//
-// Created by Ivan Gorshkov on 02.11.2020.
-//
+#ifndef PROJECT_ALL_INCLUDE_UTILS_H_
+#define PROJECT_ALL_INCLUDE_UTILS_H_
+#include <stdlib.h>
 
-#ifndef IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
-#define IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
+typedef struct {
+  size_t begin;
+  size_t size_;
+  u_int32_t *array;
+  int res;
+} meta;
 
-#endif //IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
+int read_from_file(const char *path, size_t *count_of_num, u_int32_t **array);
+int calculation(meta *info);
+
+#endif  // PROJECT_ALL_INCLUDE_UTILS_H_

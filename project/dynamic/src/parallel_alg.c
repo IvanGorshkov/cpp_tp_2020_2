@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
-#include <math.h>
 #include "parallel_alg.h"
-#include "consistent_alg.h"
+#include "utils.h"
 
 static void *thread_run(void *arg) {
   meta* info = (meta*)arg;
