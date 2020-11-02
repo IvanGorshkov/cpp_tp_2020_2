@@ -20,7 +20,6 @@ TEST(Parallel, GetLineSizeFromFileParallel) {
 
 TEST(Parallel, WrongPath) {
   std::string path = glob_test_dir;
-  path = glob_test_dir;
   path += "/in_wrong.txt";
   ASSERT_EQ(-1, parallel_get_size_of_lines(path.c_str()));
 }
