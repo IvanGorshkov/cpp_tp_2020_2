@@ -18,3 +18,10 @@ TEST(Consistent, GetLineSizeFromFileConsistent) {
     ASSERT_EQ(expected, sequential_get_size_of_lines(path.c_str()));
   }
 }
+
+TEST(Consistent, WrongPath) {
+    std::string path = glob_test_dir;
+    path = glob_test_dir;
+    path += "/in_wrong.txt";
+    ASSERT_EQ(-1, sequential_get_size_of_lines(path.c_str()));
+}
