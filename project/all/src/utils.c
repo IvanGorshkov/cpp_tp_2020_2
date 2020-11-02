@@ -26,6 +26,17 @@ int read_from_file(const char *path, size_t *count_of_num, u_int32_t **array) {
     return -1;
   }
 
+  fseek(file, 0, SEEK_END);
+  if (ftell(file) == 0) {
+    fprintf(stderr, "file is empty\n");
+    if (fclose(file)) {
+      fprintf(stderr, "Failed to close file\n");
+    }
+    return -1;
+  }
+
+  fseek(file, 0, SEEK_SET);
+
   while (!feof(file)) {
     char char_file = fgetc(file);
     if (char_file == ' ') {

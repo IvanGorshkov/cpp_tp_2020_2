@@ -1,5 +1,4 @@
 #include "test_utils.h"
-#include <string>
 extern "C" {
   #include "parallel_alg.h"
 }
@@ -40,4 +39,21 @@ TEST(Parallel, WrongPath) {
   path += "/in_wrong.txt";
   ASSERT_EQ(-1, (*parallel_func)(path.c_str()));
   dlclose(library);
+}
+
+TEST(Consistent, FileIsEmpty) {
+  void *library;
+  int (*parallel_func)(const char *);
+  library = dlopen("../../libparallellib.so", RTLD_NOW);
+  if(!library){
+    GTEST_FATAL_FAILURE_(dlerror());
+  }
+  parallel_func = (int (*)(const char *))dlsym(library, "parallel_get_size_of_lines");
+
+  std::ofstream myfile;
+  myfile.open (glob_test_dir + "/empty.txt");
+  myfile.close();
+  std::string path = glob_test_dir;
+  path += "/empty.txt";
+  ASSERT_EQ(-1, (*parallel_func)(path.c_str()));
 }

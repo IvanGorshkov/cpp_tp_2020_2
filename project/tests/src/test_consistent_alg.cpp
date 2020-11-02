@@ -1,6 +1,4 @@
 #include "test_utils.h"
-#include <string>
-
 extern "C" {
   #include "consistent_alg.h"
 }
@@ -23,4 +21,13 @@ TEST(Consistent, WrongPath) {
     std::string path = glob_test_dir;
     path += "/in_wrong.txt";
     ASSERT_EQ(-1, sequential_get_size_of_lines(path.c_str()));
+}
+
+TEST(Consistent, FileIsEmpty) {
+  std::ofstream myfile;
+  myfile.open (glob_test_dir + "/empty.txt");
+  myfile.close();
+  std::string path = glob_test_dir;
+  path += "/empty.txt";
+  ASSERT_EQ(-1, sequential_get_size_of_lines(path.c_str()));
 }

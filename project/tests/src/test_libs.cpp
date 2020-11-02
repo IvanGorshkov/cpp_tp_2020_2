@@ -1,5 +1,4 @@
 #include "test_utils.h"
-#include <string>
 extern "C" {
   #include "parallel_alg.h"
   #include "consistent_alg.h"
