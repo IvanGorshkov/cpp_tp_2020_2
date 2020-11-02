@@ -41,7 +41,7 @@ TEST(Parallel, WrongPath) {
   dlclose(library);
 }
 
-TEST(Consistent, FileIsEmpty) {
+TEST(Parallel, FileIsEmpty) {
   void *library;
   int (*parallel_func)(const char *);
   library = dlopen("../../libparallellib.so", RTLD_NOW);
