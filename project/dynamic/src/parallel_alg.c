@@ -60,44 +60,10 @@ static int creat_threads(u_int32_t *array, size_t count_of_num) {
 }
 
 int parallel_get_size_of_lines(const char *path) {
-  FILE *file = fopen(path, "r");
-  if (!file) {
-    fprintf(stderr, "Failed to open file for read\n");
-    return -1;
-  }
-
+  u_int32_t *array = NULL;
   size_t count_of_num = 0;
-  while (!feof(file)) {
-    char char_file = fgetc(file);
-    if (char_file == ' ') {
-      ++count_of_num;
-    }
-  }
 
-  ++count_of_num;
-  u_int32_t* array = calloc(count_of_num, sizeof(u_int32_t));
-
-  if (array == NULL) {
-    if (fclose(file)) {
-      fprintf(stderr, "Failed to close file\n");
-    }
-    return -1;
-  }
-
-  fseek(file, 0, SEEK_SET);
-  for (size_t i = 0; i < count_of_num; i++) {
-    if (fscanf(file, "%u", &array[i]) != 1) {
-      free(array);
-      if (fclose(file)) {
-        fprintf(stderr, "Failed to close file\n");
-      }
-      return -1;
-    }
-  }
-
-  if (fclose(file)) {
-    free(array);
-    fprintf(stderr, "Failed to close file\n");
+  if (read_from_file(path, &count_of_num, &array) == -1) {
     return -1;
   }
 

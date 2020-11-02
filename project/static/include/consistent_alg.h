@@ -9,6 +9,7 @@ typedef struct {
   int res;
 } meta;
 
+int read_from_file(const char *path, size_t *count_of_num, u_int32_t **array);
 int calculation(meta *info);
 int sequential_get_size_of_lines(const char *path);
 

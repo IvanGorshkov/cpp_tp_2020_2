@@ -18,26 +18,24 @@ int calculation(meta *info) {
   }
   return res;
 }
-
-int sequential_get_size_of_lines(const char *path) {
+int read_from_file(const char *path, size_t *count_of_num, u_int32_t **array) {
   FILE *file = fopen(path, "r");
   if (!file) {
     fprintf(stderr, "Failed to open file for read\n");
     return -1;
   }
 
-  size_t count_of_num = 0;
   while (!feof(file)) {
     char char_file = fgetc(file);
     if (char_file == ' ') {
-      ++count_of_num;
+      ++(*count_of_num);
     }
   }
 
-  ++count_of_num;
-  u_int32_t* array = calloc(count_of_num, sizeof(u_int32_t));
+  ++(*count_of_num);
+  u_int32_t* arr = calloc(*count_of_num, sizeof(u_int32_t));
 
-  if (array == NULL) {
+  if (arr == NULL) {
     if (fclose(file)) {
       fprintf(stderr, "Failed to close file\n");
     }
@@ -45,9 +43,9 @@ int sequential_get_size_of_lines(const char *path) {
   }
 
   fseek(file, 0, SEEK_SET);
-  for (size_t i = 0; i < count_of_num; i++) {
-    if (fscanf(file, "%u", &array[i]) != 1) {
-      free(array);
+  for (size_t i = 0; i < *count_of_num; i++) {
+    if (fscanf(file, "%u", &arr[i]) != 1) {
+      free(arr);
       if (fclose(file)) {
         fprintf(stderr, "Failed to close file\n");
       }
@@ -56,10 +54,22 @@ int sequential_get_size_of_lines(const char *path) {
   }
 
   if (fclose(file)) {
-    free(array);
+    free(arr);
     fprintf(stderr, "Failed to close file\n");
     return -1;
   }
+  *array = arr;
+  return EXIT_SUCCESS;
+}
+
+int sequential_get_size_of_lines(const char *path) {
+  u_int32_t *array = NULL;
+  size_t count_of_num = 0;
+
+  if (read_from_file(path, &count_of_num, &array) == -1) {
+    return -1;
+  }
+
   meta* info = calloc(1, sizeof(meta));
   info->begin = 0;
   info->size_ = count_of_num;
