@@ -1,0 +1,8 @@
+//
+// Created by Ivan Gorshkov on 02.11.2020.
+//
+
+#ifndef IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
+#define IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
+
+#endif //IZ2_PROJECT_ALL_INCLUDE_UTILS_H_
