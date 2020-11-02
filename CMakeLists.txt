@@ -21,6 +21,6 @@ ADD_LIBRARY(consistentlib STATIC
         project/static/src/consistent_alg.c
         project/all/src/utils.c)
 
-ADD_LIBRARY(parallellib STATIC
+ADD_LIBRARY(parallellib MODULE
         project/dynamic/src/parallel_alg.c
         project/all/src/utils.c)

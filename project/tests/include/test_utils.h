@@ -5,6 +5,7 @@
 #include <fstream>
 #include <ctime>
 #include <string>
+#include <dlfcn.h>
 
 extern std::string glob_test_dir;
 const int number_of_files = 7;
