@@ -1,66 +1,16 @@
-//
-// Created by Ivan Gorshkov on 16.10.2020.
-//
-
-#include "libdyn.h"
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
 #include <math.h>
-
-typedef struct {
-  int value;
-  pthread_mutex_t mutex;
-} data_t;
-
-typedef struct {
-  size_t begin;
-  size_t size_;
-  u_int32_t *array;
-} meta;
-
-data_t data = {0, PTHREAD_MUTEX_INITIALIZER};
-
-static int calculation(meta *info) {
-  if (info == NULL) {
-    return -1;
-  }
-
-  int res = 0;
-  for (size_t i = info->begin; i < info->begin + info->size_; ++i) {
-    u_int32_t number = info->array[i];
-    char coordinates[4];
-    for (int byte = 0; byte < 4; ++byte) {
-      coordinates[3 - byte] = (number >> (8 * byte)) & 0xff;
-    }
-    res  += sqrt(pow(coordinates[3] - coordinates[1], 2) - pow(coordinates[2] - coordinates[0], 2));
-  }
-  return res;
-}
+#include "parallel_alg.h"
+#include "consistent_alg.h"
 
 static void *thread_run(void *arg) {
-  pthread_mutex_t *mutex = &data.mutex;
-
   meta* info = (meta*)arg;
   if (info == NULL) {
     return NULL;
   }
-  int res = calculation(info);
-
-  int err_flag = 0;
-  err_flag = pthread_mutex_lock(mutex);
-  if (err_flag != 0) {
-    fprintf(stderr, "Failed to lock mutex\n");
-    return NULL;
-  }
-
-  data.value += res;
-  err_flag = pthread_mutex_unlock(mutex);
-  if (err_flag != 0) {
-    fprintf(stderr, "Failed to unlock mutex\n");
-    return NULL;
-  }
-
+  info->res = calculation(info);
   return NULL;
 }
 
@@ -92,8 +42,10 @@ static int creat_threads(u_int32_t *array, size_t count_of_num) {
     pthread_create(&ths[kI], NULL, thread_run, &info[kI]);
   }
 
+  int result = 0;
   for (int index_thread = 0; index_thread < number_of_thread; ++index_thread) {
     int errflag = pthread_join(ths[index_thread], NULL);
+    result += info[index_thread].res;
     if (errflag != 0) {
       fprintf(stderr, "Failed to close thread\n");
       free(info);
@@ -104,7 +56,7 @@ static int creat_threads(u_int32_t *array, size_t count_of_num) {
 
   free(info);
   free(ths);
-  return data.value;
+  return result;
 }
 
 int parallel_get_size_of_lines(const char *path) {
@@ -134,7 +86,13 @@ int parallel_get_size_of_lines(const char *path) {
 
   fseek(file, 0, SEEK_SET);
   for (size_t i = 0; i < count_of_num; i++) {
-    fscanf(file, "%u", &array[i]);
+    if (fscanf(file, "%u", &array[i]) != 1) {
+      free(array);
+      if (fclose(file)) {
+        fprintf(stderr, "Failed to close file\n");
+      }
+      return -1;
+    }
   }
 
   if (fclose(file)) {
@@ -149,6 +107,5 @@ int parallel_get_size_of_lines(const char *path) {
     return -1;
   }
   free(array);
-  data.value = 0;
   return result;
 }

@@ -1,7 +1,3 @@
-//
-// Created by Ivan Gorshkov on 22.10.2020.
-//
-
 #include <fstream>
 #include <random>
 #include "utils.h"
@@ -21,14 +17,12 @@ void resetClock() {
 
 void generateFile() {
   std::ofstream myfile;
-  myfile.open (glob_test_dir + "stress_test.txt");
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  for (int i = 0; i < 5000; ++i) {
-    if (i != 5000) {
-      std::cout << gen() << " ";
+  myfile.open (glob_test_dir + "/stress_test.txt");
+  for (int i = 0; i < 50000; ++i) {
+    if (i != 4999) {
+      myfile << rand() % 1000 + 1 << " ";
     } else {
-      std::cout << gen();
+      myfile << rand() % 1000 + 1;
     }
   }
   myfile.close();

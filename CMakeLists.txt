@@ -10,13 +10,13 @@ ENABLE_TESTING()
 
 add_executable(${PROJECT_NAME}
         project/main.c
-        project/dynamic/src/libdyn.c
-        project/static/src/libstat.c)
+        project/dynamic/src/parallel_alg.c
+        project/static/src/consistent_alg.c)
 
 ADD_SUBDIRECTORY(project/tests/)
 
-ADD_LIBRARY(libstat STATIC
-        project/static/src/libstat.c)
+ADD_LIBRARY(parallellib STATIC
+        project/static/src/consistent_alg.c)
 
-ADD_LIBRARY(libdyn SHARED
-        project/dynamic/src/libdyn.c)
+ADD_LIBRARY(consistentlib STATIC
+        project/dynamic/src/parallel_alg.c)

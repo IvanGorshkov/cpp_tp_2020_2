@@ -1,7 +1,3 @@
-//
-// Created by Ivan Gorshkov on 21.10.2020.
-//
-
 #include "utils.h"
 
 std::string glob_test_dir;

@@ -1,16 +1,11 @@
-//
-// Created by Ivan Gorshkov on 22.10.2020.
-//
-
 #include "utils.h"
 #include <string>
 extern "C" {
-  #include "libdyn.h"
+  #include "parallel_alg.h"
 }
 
-TEST(ParallelLib, GetLineSizeFromFileDyn) {
+TEST(Parallel, GetLineSizeFromFileParallel) {
   for (int kI = 0; kI < number_of_files; ++kI) {
-    std::cout << glob_test_dir << std::endl;
     std::string path = glob_test_dir;
     path += "/out_" + std::to_string(kI + 1) + ".txt";
     std::ifstream is(path);
@@ -19,7 +14,6 @@ TEST(ParallelLib, GetLineSizeFromFileDyn) {
     is.close();
     path = glob_test_dir;
     path += "/in_" + std::to_string(kI + 1) + ".txt";
-    std::cout << path << std::endl;
     ASSERT_EQ(expected, parallel_get_size_of_lines(path.c_str()));
   }
 }

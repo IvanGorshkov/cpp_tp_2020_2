@@ -1,24 +1,21 @@
-//
-// Created by Ivan Gorshkov on 20.10.2020.
-//
-
-#include "libstat.h"
+#include "consistent_alg.h"
 #include <stdio.h>
 #include <math.h>
 
-static int calc_all_line_size(u_int32_t *array, size_t count) {
-  int res = 0;
-  for (size_t kI = 0; kI < count; ++kI) {
-    u_int32_t x = array[kI];
-    char coordinates[4];
-
-    for (int i = 0; i < 4; ++i) {
-      coordinates[3 - i] = (x >> (8 * i)) & 0xff;
-    }
-
-    res += sqrt(pow(coordinates[3] - coordinates[1], 2) - pow(coordinates[2] - coordinates[0], 2));
+int calculation(meta *info) {
+  if (info == NULL) {
+    return -1;
   }
 
+  int res = 0;
+  for (size_t i = info->begin; i < info->begin + info->size_; ++i) {
+    u_int32_t number = info->array[i];
+    char coordinates[4];
+    for (int byte = 0; byte < 4; ++byte) {
+      coordinates[3 - byte] = (number >> (8 * byte)) & 0xff;
+    }
+    res  += sqrt(pow(coordinates[3] - coordinates[1], 2) - pow(coordinates[2] - coordinates[0], 2));
+  }
   return res;
 }
 
@@ -49,7 +46,13 @@ int sequential_get_size_of_lines(const char *path) {
 
   fseek(file, 0, SEEK_SET);
   for (size_t i = 0; i < count_of_num; i++) {
-    fscanf(file, "%u", &array[i]);
+    if (fscanf(file, "%u", &array[i]) != 1) {
+      free(array);
+      if (fclose(file)) {
+        fprintf(stderr, "Failed to close file\n");
+      }
+      return -1;
+    }
   }
 
   if (fclose(file)) {
@@ -57,13 +60,18 @@ int sequential_get_size_of_lines(const char *path) {
     fprintf(stderr, "Failed to close file\n");
     return -1;
   }
-
-  int result = calc_all_line_size(array, count_of_num);
+  meta* info = calloc(1, sizeof(meta));
+  info->begin = 0;
+  info->size_ = count_of_num;
+  info->array = array;
+  int result = calculation(info);
   if (result == -1) {
     free(array);
+    free(info);
     return -1;
   }
   free(array);
+  free(info);
 
   return result;
 }

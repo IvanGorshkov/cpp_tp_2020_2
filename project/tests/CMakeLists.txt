@@ -13,8 +13,8 @@ ADD_EXECUTABLE(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/test_libs.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/test_static.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/test_dyn.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/test_consistent_alg.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/test_parallel_alg.cpp)
 
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} libdyn libstat)
-ADD_TEST(NAME Test COMMAND ${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/project/tests/data/)
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} PRIVATE ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} parallellib consistentlib)
+ADD_TEST(NAME Test COMMAND ${PROJECT_NAME} ${CMAKE_SOURCE_DIR} /project/tests/data/)
