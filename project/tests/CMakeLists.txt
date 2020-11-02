@@ -12,7 +12,7 @@ INCLUDE_DIRECTORIES(include)
 ADD_EXECUTABLE(${PROJECT_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/test_libs.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/test_utils.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/test_consistent_alg.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/test_parallel_alg.cpp)
 

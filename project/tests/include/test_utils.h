@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <fstream>
 #include <ctime>
+#include <string>
 
 extern std::string glob_test_dir;
 const int number_of_files = 7;
